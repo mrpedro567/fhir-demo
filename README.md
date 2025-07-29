@@ -1,67 +1,119 @@
-# Trabalho prático: Sistema de Monitoramento de Hemogramas
+# Sistema de Monitoramento de Hemogramas
 
-## Objetivo do projeto
-Desenvolver um sistema que recebe e analisa hemogramas de pacientes, identificando padrões anômalos e disparando notificações para gestores de saúde. O sistema utilizará o padrão **FHIR** para garantir a interoperabilidade e permitirá monitorar a saúde de uma população em tempo real.
+## Contexto  
 
-## Resultado esperado
-O trabalho visa gerar valor para a saúde pública, auxiliando gestores a detectar sinais coletivos de problemas de saúde de forma rápida e eficiente, com base nos resultados de hemogramas recebidos periodicamente.
+O sistema de saúde estadual possui um grande volume de hemogramas sendo recebidos diariamente por diversos laboratórios públicos e privados. Esses exames contêm informações valiosas que, se analisadas dinamicamente, podem antecipar a identificação de surtos, agravos coletivos e outras situações críticas de saúde pública.
 
-## Descrição do sistema
-O sistema será responsável por:
+A proposta consiste em desenvolver um sistema de software que processe automaticamente os hemogramas recebidos, identifique sinais relevantes e notifique, por meio de um aplicativo móvel, os gestores responsáveis pela vigilância em saúde.
 
-1. Receber e processar hemogramas: a partir de uma fonte centralizada, os resultados de hemogramas serão enviados periodicamente para o sistema por meio do mecanismo **FHIR Subscription**.
-2. 
-3. Análise automática dos hemogramas: o sistema realizará uma análise simples de parâmetros-chave dos hemogramas para identificar possíveis alertas, como:
-   - *leucócitos* (glóbulos brancos): O aumento de leucócitos pode indicar uma infecção ou inflamação.
-   - *plaquetas*: uma contagem muito baixa pode indicar risco de sangramentos.
-   - *hemoglobina*: níveis abaixo da faixa normal podem indicar anemia.
-     
-4. Notificação para gestores: quando a análise indicar que há uma anomalia coletiva (como o aumento de leucócitos em várias amostras), o sistema enviará uma notificação em tempo real para gestores por meio de um aplicativo móvel.
+## Objetivos  
 
-### Componentes principais do sistema
-- *ingestão de dados*: recebimento de dados de hemogramas em formato FHIR (`Observation`) via **FHIR Subscription**.
-- *processamento e análise*: análise automática dos dados para detectar padrões que demandam atenção.
-- *alertas e notificações*: envio de alertas aos gestores via app móvel quando os dados indicam anomalias.
-- *app móvel*: aplicação para gestores que exibe alertas e informações detalhadas sobre os hemogramas analisados.
+O objetivo deste projeto é permitir que gestores de saúde pública recebam, em tempo real, alertas baseados em evidências laboratoriais populacionais, com base em hemogramas provenientes da rede estadual de laboratórios.
 
-## Regras para análise automática de hemogramas
-O sistema será responsável por processar os hemogramas e aplicar as seguintes regras básicas de análise automática, com base em faixas de referência típicas para cada parâmetro. A análise será feita de forma dinâmica, com os dados sendo recebidos periodicamente.
+## Funcionalidades esperadas  
 
-1. leucócitos (glóbulos brancos):
-   - valor normal: 4.000 - 11.000 leucócitos/microlitro.
-   - alerta: Se a contagem de leucócitos estiver **acima de 11.000** ou **abaixo de 4.000**, será gerado um alerta.
-   
-2. plaquetas:
-   - valor normal: 150.000 - 450.000 plaquetas/microlitro.
-   - alerta: Se a contagem de plaquetas estiver **abaixo de 150.000** ou **acima de 450.000**, será gerado um alerta.
-   
-3. hemoglobina:
-   - valor normal:
-     - homens: 13.8 - 17.2 g/dL.
-     - mulheres: 12.1 - 15.1 g/dL.
-   - alerta: Se os níveis de hemoglobina estiverem **abaixo do limite inferior** ou **acima do limite superior** para a faixa etária e sexo do paciente.
+1. receber e processar hemogramas via mecanismo de subscription FHIR  
+2. realizar análise individual de cada hemograma para identificar desvios em parâmetros hematológicos  
+3. manter uma base consolidada local com hemogramas recebidos  
+4. realizar análises populacionais em janelas de tempo deslizantes  
+5. detectar padrões coletivos anômalos (ex: aumento expressivo de leucócitos em determinada região)  
+6. emitir alertas para gestores de saúde quando padrões suspeitos forem detectados  
+7. disponibilizar aplicativo móvel para notificação e consulta dos alertas  
 
-4. detecção de padrões coletivos:
-   - Caso o sistema detecte **múltiplos alertas** (exemplo: aumento significativo de leucócitos em várias amostras de uma mesma região) em um período de tempo **curto**, um alerta coletivo será gerado e enviado para o gestor da saúde.
-   - O alerta deve incluir informações como número de casos alertados, média dos valores dos parâmetros, e possíveis recomendações iniciais.
+## Arquitetura geral  
 
-## Requisitos técnicos
-- fhir: utilização do padrão FHIR, especificamente os recursos `Observation` para os hemogramas e `Communication` para as notificações.
-- fhir subscription: o recebimento dos hemogramas será feito por meio do mecanismo **FHIR Subscription**, permitindo que o sistema seja automaticamente notificado quando novos dados de hemogramas forem disponibilizados.
-- backend e armazenamento: o sistema usará um servidor FHIR simples (como HAPI FHIR) para armazenar os dados e gerar as respostas às requisições de dados dos hemogramas.
-- app móvel: o aplicativo será responsável por receber notificações e apresentar os alertas aos gestores. Este app deve ser simples, intuitivo, e mostrar informações claras sobre os alertas recebidos.
+O sistema será composto por:  
 
-## Objetivos de aprendizagem
-- desenvolvimento de software distribuído: implementar um sistema que se comunique com diversas fontes de dados e que seja escalável.
-- trabalho com interoperabilidade: utilizar o padrão FHIR para garantir a troca de informações entre sistemas diferentes, utilizando dados clínicos.
-- processamento em tempo real: aplicar técnicas de processamento de dados em tempo real para detectar padrões preocupantes em hemogramas.
-- criação de sistemas para a saúde pública: entender as necessidades dos gestores de saúde e como a tecnologia pode ajudá-los a tomar decisões rápidas e informadas.
+- um receptor de mensagens FHIR via subscription, que receberá instâncias do recurso Observation  
+- um componente de processamento analítico que irá atualizar a base consolidada e executar as análises  
+- um gerador de notificações baseado em regras e em detecção de padrões  
+- uma API REST para expor os alertas detectados  
+- um aplicativo móvel para gestores de saúde, que consulta e recebe notificações  
 
-## Considerações
-Este projeto proporciona aos alunos uma experiência prática na aplicação de conceitos de software em um domínio crítico, como a saúde. A utilização do padrão FHIR garante que o sistema seja interoperável, enquanto a análise de dados de hemogramas permitirá a identificação de padrões de saúde importantes, oferecendo valor real ao negócio e à saúde pública.
+## Detecção de padrões coletivos  
 
-## Restrições de projeto
-- tecnologias: FHIR Subscription (para recepção dos dados), FHIR (Observation e Communication), HAPI FHIR, backend simples.
-- plataforma móvel: o aplicativo móvel deve ser desenvolvido para Android e Apple, alternativamente como uma aplicação web responsiva).
-- autenticação e autorização: via Gov.BR.
+O sistema terá como objetivo principal identificar não apenas anomalias individuais em hemogramas, mas também padrões coletivos que possam indicar situações relevantes do ponto de vista da saúde pública. Para isso, será mantido um estado consolidado local, atualizado continuamente com os hemogramas recebidos.
 
+A detecção de padrões coletivos seguirá os seguintes princípios e estratégias:
+
+1. unidade de agregação:  
+   - os dados serão agregados por região geográfica (exemplo: município, distrito sanitário, unidade de saúde ou código IBGE)  
+   - será possível configurar qual nível geográfico deve ser considerado na agregação  
+
+2. janela de tempo:  
+   - os dados serão avaliados dentro de uma janela deslizante de tempo (por exemplo, últimas 24h ou últimos 3 dias)  
+   - essa janela será usada para manter uma amostra recente da população monitorada  
+
+3. indicadores computados:  
+   - para cada região e janela de tempo, o sistema calculará:  
+     - total de hemogramas recebidos  
+     - número de hemogramas com alertas individuais (ex: leucócitos elevados)  
+     - proporção de hemogramas com alertas em relação ao total  
+     - média e desvio padrão dos valores de cada parâmetro (ex: leucócitos, plaquetas, hemoglobina)  
+     - tendência temporal (se a média dos valores está aumentando ou diminuindo em relação à janela anterior)  
+
+4. gatilhos para alertas coletivos:  
+   - será disparado um alerta coletivo quando forem satisfeitas simultaneamente as seguintes condições:  
+     - volume mínimo de dados: número mínimo de hemogramas na janela (por exemplo, pelo menos 30)  
+     - proporção de alertas acima de limiar configurável (ex: mais de 40% com leucócitos alterados)  
+     - tendência de aumento: o valor médio do parâmetro em questão aumentou significativamente (por exemplo, 20%) em comparação com a janela anterior  
+
+5. frequência de avaliação:  
+   - a detecção coletiva será feita periodicamente (ex: a cada 15 minutos), utilizando os dados recebidos até aquele momento  
+   - a análise será incremental, utilizando uma estrutura de dados de janela deslizante eficiente para evitar reprocessamento completo  
+
+6. resposta ao alerta coletivo:  
+   - quando um padrão coletivo for detectado, o sistema:  
+     - criará uma instância do recurso FHIR `Communication`, associada à região e janela de tempo  
+     - enviará uma notificação ao aplicativo móvel com:  
+       - região afetada  
+       - parâmetro alterado (ex: leucócitos)  
+       - valores médios e comparação com a janela anterior  
+       - número total de hemogramas e proporção com alerta  
+       - sugestão de ação (ex: investigação in loco, reforço da vigilância laboratorial etc.)  
+
+7. persistência e auditoria:  
+   - cada alerta coletivo será registrado com um identificador único, data/hora, dados estatísticos utilizados, e o conjunto de Observations (hemogramas) que contribuíram para o alerta  
+   - esses dados serão mantidos como evidência e poderão ser auditados posteriormente  
+
+8. tolerância a ruído:  
+   - para evitar falsos positivos, será utilizado um limite mínimo de número de amostras e algoritmos de suavização (como médias móveis exponenciais)  
+   - regiões com pouca amostragem poderão ser tratadas de forma distinta, com alertas de baixa confiabilidade ou exigência de confirmação manual  
+
+## requisitos técnicos  
+
+- uso do padrão HL7 FHIR versão R4  
+- uso do recurso Observation com perfil específico de hemograma  
+- mecanismo de subscription FHIR (Rest-Hook ou Websocket)  
+- armazenamento local dos dados recebidos (banco relacional ou NoSQL)  
+- análise estatística básica (média, desvio, tendência)  
+- desenvolvimento de API REST para consulta dos alertas  
+- implementação de notificações push no aplicativo móvel (Android)  
+
+## restrições de projeto  
+
+- o sistema não deverá armazenar dados pessoais identificáveis  
+- a comunicação entre sistemas deverá ocorrer via HTTPS, com autenticação mTLS  
+- o aplicativo móvel será voltado inicialmente para Android e destinado a uso interno por gestores de saúde  
+- os alertas gerados não têm caráter diagnóstico, apenas sinalizam necessidade de investigação epidemiológica  
+
+## tecnologias sugeridas  
+
+- linguagem Java ou Kotlin para backend  
+- Spring Boot para construção da API REST e recebimento dos subscriptions  
+- uso de MongoDB ou PostgreSQL com partição por data  
+- FHIR client HAPI-FHIR para parse e manipulação dos recursos  
+- Firebase Cloud Messaging para notificações push no app Android  
+- Jetpack Compose ou Flutter para desenvolvimento do app  
+
+## justificativa pedagógica  
+
+Este projeto oferece aos alunos de engenharia de software uma oportunidade de desenvolver um sistema completo, integrado com padrões internacionais de interoperabilidade (FHIR), incluindo:  
+
+- recebimento assíncrono de dados via subscription  
+- manipulação de dados clínicos estruturados  
+- análise estatística em tempo real  
+- projeto de APIs RESTful  
+- integração com app móvel via notificações  
+
+Além disso, o projeto conecta fortemente o desenvolvimento de software com o valor gerado para o negócio da saúde pública, promovendo uma compreensão concreta de como tecnologia pode auxiliar na vigilância e resposta rápida a eventos adversos populacionais.
