@@ -80,7 +80,7 @@ A detecção de padrões coletivos seguirá os seguintes princípios e estratég
    - para evitar falsos positivos, será utilizado um limite mínimo de número de amostras e algoritmos de suavização (como médias móveis exponenciais)  
    - regiões com pouca amostragem poderão ser tratadas de forma distinta, com alertas de baixa confiabilidade ou exigência de confirmação manual  
 
-## requisitos técnicos  
+## Requisitos técnicos  
 
 - uso do padrão HL7 FHIR versão R4  
 - uso do recurso Observation com perfil específico de hemograma  
@@ -90,14 +90,14 @@ A detecção de padrões coletivos seguirá os seguintes princípios e estratég
 - desenvolvimento de API REST para consulta dos alertas  
 - implementação de notificações push no aplicativo móvel (Android)  
 
-## restrições de projeto  
+## Restrições de projeto  
 
 - o sistema não deverá armazenar dados pessoais identificáveis  
 - a comunicação entre sistemas deverá ocorrer via HTTPS, com autenticação mTLS  
 - o aplicativo móvel será voltado inicialmente para Android e destinado a uso interno por gestores de saúde  
 - os alertas gerados não têm caráter diagnóstico, apenas sinalizam necessidade de investigação epidemiológica  
 
-## tecnologias sugeridas  
+## Tecnologias sugeridas  
 
 - linguagem Java ou Kotlin para backend  
 - Spring Boot para construção da API REST e recebimento dos subscriptions  
@@ -106,7 +106,7 @@ A detecção de padrões coletivos seguirá os seguintes princípios e estratég
 - Firebase Cloud Messaging para notificações push no app Android  
 - Jetpack Compose ou Flutter para desenvolvimento do app  
 
-## justificativa pedagógica  
+## Justificativa pedagógica  
 
 Este projeto oferece aos alunos de engenharia de software uma oportunidade de desenvolver um sistema completo, integrado com padrões internacionais de interoperabilidade (FHIR), incluindo:  
 
