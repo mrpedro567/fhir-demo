@@ -32,7 +32,7 @@ UNIDADE 2 – Construção de software para sistemas ubíquos (42h)
 
 ## Relação com outras disciplinas
 
-Sistemas ubíquos são essencialmente sistemas distribuídos, com forte aplicação dos conceitos estudados na disciplina de Software Concorrente e Distribuído. Por tratar da construção de software, são também necessários conhecimentos adquiridos nas disciplinas relacionadas, notadamente Projeto de Software, Construção de Software e Arquitetura de Software. Finalmente, as competências desenvolvidas nas disciplinas relacionadas com programação (Introdução a Programação, Algoritmos e Estruturas de Dados 1 e 2, e Programação Orientada a Objetos) são também importantes.
+Sistemas ubíquos são essencialmente sistemas distribuídos, com forte aplicação dos conceitos estudados na disciplina de Software Concorrente e Distribuído. Por tratar da construção de software, são também necessários conhecimentos adquiridos nas disciplinas relacionadas, notadamente Projeto de Software, Construção de Software e Arquitetura de Software. Finalmente, as competências desenvolvidas nas disciplinas relacionadas com programação (Introdução a Programação, Algoritmos e Estruturas de Dados 1 e 2, e Programação Orientada a Objetos).
 
 ## Critérios de avaliação
 
