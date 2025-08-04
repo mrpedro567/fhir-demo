@@ -1,4 +1,109 @@
-# Sistema de Monitoramento de Hemogramas
+# Software para Sistemas Ubíquos
+
+## Ementa
+
+Sistemas de informação que fazem uso de dispositivos (ubíquos) (16h): smartphones, sensores, internet das coisas (IoT), stream analytics e aspectos de segurança (vulnerabilidades, criptografia, certificados digitais). Definição de arquiteturas para soluções móveis (16): conectar serviços, possivelmente de grande volume, fluxo e em tempo real, com a necessidade de analisá-los. Desenvolvimento de código para smartphone, sensor ou outro dispositivo capaz de alimentar/receber informações de sistema de informação (32h).
+
+## Objetivo geral
+
+Estar apto a colaborar com o desenvolvimento de soluções no domínio
+de sistemas ubíquos e pervasivos.
+
+## Objetivos específicos
+
+- Compreender e caracterizar o paradigma de computação ubíqua e pervasiva e seu uso como parte de aplicações e sistemas de informação.
+- Compreender e caracterizar os conceitos fundamentais envolvidos na construção de software para sistemas ubíquos: redes de sensores internet das coisas (IoT) e sistemas ciberfísicos; ambientes inteligentes (smart spaces); ciência de contexto; processamento de streams de dados; computação móvel; computação no contínuo da Internet (nuvem, névoa e borda); ambientes virtuais e metaverso.
+- Compreender o panorama geral de plataformas, middleware, frameworks e ferramentas utilizadas no desenvolvimento de software para sistemas ubíquos, desenvolvendo a capacidade de aplicação prática em cenários representativos.
+- Compreender os principais aspectos não-funcionais de software para sistemas ubíquos, notadamente: mobilidade, persistência, segurança, desempenho e privacidade.
+
+## Programa
+
+UNIDADE 1 – Introdução e Fundamentos (22h)
+1 – Introdução: definições básicas, exemplos, objetivos de projeto e classificação de sistemas de computação ubíqua e pervasiva (04h).
+2 - Princípios de arquitetura de software para sistemas de computação ubíqua. (02h)
+3 – Conceitos fundamentais: computação móvel; redes de sensores; IoT; smart spaces; ciência de contexto; processamento de streams; computação no contínuo nuvem-névoa-borda; gêmeos digitais; metaverso. (16h, inclui avaliação escrita)
+      
+UNIDADE 2 – Construção de software para sistemas ubíquos (42h)
+4 – Princípios do desenvolvimento de software para sistemas ubíquos: middleware, plataformas e frameworks. (02h)
+5 – Arquiteturas de comunicação e integração para sistemas ubíquos: cliente-servidor; publish-subscribe; messaging; streaming. (08h)
+6 – Construção de aplicações para sistemas ubíquos usando dispositivos móveis: adaptação da interface de usuário entre dispositivos heterogêneos; offloading de funções no contínuo da computação; mobile cloud/edge computing. (12h)
+7 – Construção de software para sistemas ubíquos: projeto e implementação de sistemas ciberfísicos; processamento de streams em tempo real; ciência de contexto; projeto e implementação de gêmeos digitais; construção de aplicações ubíquas; segurança e privacidade. (20h, inclui acompanhamento do trabalho e avaliação escrita)
+
+
+## Relação com outras disciplinas
+
+Sistemas ubíquos são essencialmente sistemas distribuídos, com forte aplicação dos conceitos estudados na disciplina de Software Concorrente e Distribuído. Por tratar da construção de software, são também necessários conhecimentos adquiridos nas disciplinas relacionadas, notadamente Projeto de Software, Construção de Software e Arquitetura de Software. Finalmente, as competências desenvolvidas nas disciplinas relacionadas com programação (Introdução a Programação, Algoritmos e Estruturas de Dados 1 e 2, e Programação Orientada a Objetos) são também importantes.
+
+## Critérios de avaliação
+
+A avaliação da disciplina será baseada na metodologia de aula invertida, onde os estudantes conduzem o desenvolvimento do trabalho prático e o professor atua como mediador. A nota final será composta por:
+
+### 1. Desenvolvimento Incremental do Sistema (60%)
+
+**1.1 Entrega dos Marcos Técnicos (40%)**
+- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via subscription, com parsing correto dos recursos Observation
+- **Marco 2 - Análise Individual (10%)**: Componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos
+- **Marco 3 - Base Consolidada (10%)**: Sistema de armazenamento local operacional com persistência dos hemogramas recebidos
+- **Marco 4 - Análise Coletiva (10%)**: Implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
+
+**1.2 Integração e Funcionalidades Avançadas (20%)**
+- **API REST (5%)**: Endpoints funcionais para consulta de alertas com documentação adequada
+- **Aplicativo Móvel (10%)**: App Android funcional com recebimento de notificações e interface para consulta de alertas
+- **Testes e Qualidade (5%)**: Cobertura de testes automatizados e qualidade do código (seguindo boas práticas)
+
+### 2. Processo de Desenvolvimento e Colaboração (25%)
+
+**2.1 Gestão de Projeto (10%)**
+- Uso adequado de controle de versão (Git) com commits organizados e mensagens descritivas
+- Organização de backlog e sprints com divisão clara de responsabilidades entre membros da equipe
+- Documentação técnica atualizada (README, arquitetura, APIs)
+
+**2.2 Apresentações e Demonstrações (15%)**
+- **Apresentações Intermediárias (10%)**: Demonstrações funcionais nos marcos 1, 2, 3 e 4 (2,5% cada)
+- **Apresentação Final (5%)**: Demonstração completa do sistema integrado com cenários de uso realistas
+
+### 3. Competências Técnicas e Conceituais (15%)
+
+**3.1 Aplicação de Conceitos da Disciplina (10%)**
+- Uso adequado de padrões de sistemas ubíquos: publish-subscribe, streaming, processamento em tempo real
+- Implementação de aspectos não-funcionais: segurança (HTTPS, mTLS), performance, escalabilidade
+- Aplicação correta do padrão HL7 FHIR e interoperabilidade
+
+**3.2 Inovação e Solução de Problemas (5%)**
+- Capacidade de resolver problemas técnicos encontrados durante o desenvolvimento
+- Implementação de melhorias ou funcionalidades adicionais relevantes ao contexto de saúde pública
+
+### Cronograma de Avaliações
+
+| Semana | Atividade | Peso |
+|--------|-----------|------|
+| 4 | Marco 1 - Apresentação + Código | 10% |
+| 8 | Marco 2 - Apresentação + Código | 10% |
+| 12 | Marco 3 - Apresentação + Código | 10% |
+| 15 | Marco 4 - Apresentação + Código | 10% |
+| 16 | Entrega API REST + Testes | 5% |
+| 17 | Entrega App Móvel | 10% |
+| 18 | Apresentação Final + Documentação | 20% |
+| Contínua | Gestão de Projeto (Git, Sprints) | 10% |
+| Contínua | Qualidade de Código e Testes | 5% |
+| Contínua | Aplicação de Conceitos | 10% |
+
+### Critérios de Aprovação
+
+- **Nota mínima**: 6,0 (sessenta por cento)
+- **Frequência mínima**: 75%
+- **Entrega obrigatória**: Todos os 4 marcos técnicos devem ser entregues (mesmo que parcialmente funcionais)
+- **Trabalho em equipe**: Equipes de 3-5 estudantes, com avaliação individual baseada na contribuição identificada no Git
+
+### Observações
+
+- As apresentações serão avaliadas quanto à clareza técnica, funcionalidade demonstrada e capacidade de responder questionamentos
+- O código será avaliado quanto à funcionalidade, organização, documentação e aderência aos requisitos técnicos
+- Será valorizada a evolução e aprendizado demonstrado ao longo do semestre, não apenas o resultado final
+- Feedbacks contínuos serão fornecidos após cada marco para orientar melhorias
+
+
+# Trabalho prático - Sistema de Monitoramento de Hemogramas
 
 ## Contexto  
 
