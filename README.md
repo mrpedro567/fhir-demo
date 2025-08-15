@@ -22,7 +22,7 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 ### 1. Desenvolvimento Incremental do Sistema (60%)
 
 **1.1 Entrega dos Marcos Técnicos (40%)**
-- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via subscription, com parsing de instâncias de recursos Observation. Cada novo hemograma, dessa forma, será "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido.
+- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via [subscription](https://www.hl7.org/fhir/R4/subscription.html), com parsing de instâncias de recursos Observation. Você deve usar este mecanismo para que cada novo hemograma recebido pelo servidor FHIR seja "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido (hemograma). Se você usar um Servidor FHIR para testes como o HAPI FHIR, por exemplo, a consulta [https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count](https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count) mostrará quantas "assinaturas" estarão ativas. 
 - **Marco 2 - Análise Individual (10%)**: Componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos.
 - **Marco 3 - Base Consolidada (10%)**: Sistema de armazenamento local operacional com persistência dos hemogramas recebidos e eventuais outros dados para análise proposta.
 - **Marco 4 - Análise Coletiva (10%)**: Implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
