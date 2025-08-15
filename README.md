@@ -22,8 +22,8 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 ### 1. Desenvolvimento Incremental do Sistema (60%)
 
 **1.1 Entrega dos Marcos Técnicos (40%)**
-- **Marco 1 - Recepção FHIR (10%)**: implementação funcional do receptor de mensagens FHIR via [subscription](https://www.hl7.org/fhir/R4/subscription.html), com parsing de instâncias de recursos Observation. Você deve usar este mecanismo para que cada novo hemograma recebido pelo servidor FHIR seja "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido (hemograma). Se você usar um Servidor FHIR para testes como o HAPI FHIR, por exemplo, a consulta [https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count](https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count) mostrará quantas "assinaturas" estarão ativas. 
-- **Marco 2 - Análise Individual (10%)**: componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos.
+- **Marco 1 - Recepção FHIR (10%)**: implementação funcional do receptor de mensagens FHIR via [subscription](https://www.hl7.org/fhir/R4/subscription.html), com parsing de instâncias de recursos Observation. Você deve usar este mecanismo para que cada novo hemograma recebido pelo servidor FHIR seja "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido (hemograma). Se você usar um Servidor FHIR para testes como o HAPI FHIR, por exemplo, a consulta [https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count](https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count) mostrará quantas "assinaturas" estarão ativas. Um servidor para testes facilita o aprendizado, mas bem provavelmente irão disponibilizar localmente uma instância do [Servidor HAPI FHIR](https://github.com/hapifhir/hapi-fhir-jpaserver-starter) ou outra.
+- **Marco 2 - Análise Individual (10%)**: componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos. Você deverá procurar por parâmetros de referência do Estado de Goiás, do Brasil ou do mundo. 
 - **Marco 3 - Base Consolidada (10%)**: sistema de armazenamento local operacional com persistência dos hemogramas recebidos e eventuais outros dados para análise proposta.
 - **Marco 4 - Análise Coletiva (10%)**: implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
 
@@ -47,7 +47,7 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 
 **3.1 Aplicação de Conceitos da Disciplina (10%)**
 - Uso adequado de padrões de sistemas ubíquos: publish-subscribe, streaming, processamento em tempo real
-- Implementação de aspectos não-funcionais: segurança (HTTPS, mTLS), performance, escalabilidade
+- Implementação de aspectos não-funcionais: segurança (HTTPS, autenticação básica), performance, escalabilidade
 - Aplicação correta do padrão HL7 FHIR e interoperabilidade
 
 **3.2 Inovação e Solução de Problemas (5%)**
