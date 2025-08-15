@@ -4,6 +4,7 @@
 
 - Consulte o [plano](docs/plano.pdf).
 - Conceitos básicos de [hemograma](https://drive.google.com/file/d/11Mu27n1Av6A4__0fBmQ-vCtoo64JtKyJ/view?usp=sharing).
+- Um [hemograma](https://fhir.saude.go.gov.br/r4/exame/) pela SES-GO.
 
 ## Ementa
 
