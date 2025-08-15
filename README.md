@@ -3,6 +3,7 @@
 ## Links relevantes
 
 - Consulte o [plano](docs/plano.pdf).
+- Conceitos básicos de [hemograma](https://drive.google.com/file/d/11Mu27n1Av6A4__0fBmQ-vCtoo64JtKyJ/view?usp=sharing).
 
 ## Ementa
 
@@ -45,9 +46,9 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 ### 1. Desenvolvimento Incremental do Sistema (60%)
 
 **1.1 Entrega dos Marcos Técnicos (40%)**
-- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via subscription, com parsing correto dos recursos Observation
-- **Marco 2 - Análise Individual (10%)**: Componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos
-- **Marco 3 - Base Consolidada (10%)**: Sistema de armazenamento local operacional com persistência dos hemogramas recebidos
+- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via subscription, com parsing de instâncias de recursos Observation.
+- **Marco 2 - Análise Individual (10%)**: Componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos.
+- **Marco 3 - Base Consolidada (10%)**: Sistema de armazenamento local operacional com persistência dos hemogramas recebidos.
 - **Marco 4 - Análise Coletiva (10%)**: Implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
 
 **1.2 Integração e Funcionalidades Avançadas (20%)**
@@ -79,18 +80,18 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 
 ### Cronograma de Avaliações
 
-| Semana | Atividade | Peso |
-|--------|-----------|------|
-| 4 | Marco 1 - Apresentação + Código | 10% |
-| 8 | Marco 2 - Apresentação + Código | 10% |
-| 12 | Marco 3 - Apresentação + Código | 10% |
-| 15 | Marco 4 - Apresentação + Código | 10% |
-| 16 | Entrega API REST + Testes | 5% |
-| 17 | Entrega App Móvel | 10% |
-| 18 | Apresentação Final + Documentação | 20% |
-| Contínua | Gestão de Projeto (Git, Sprints) | 10% |
-| Contínua | Qualidade de Código e Testes | 5% |
-| Contínua | Aplicação de Conceitos | 10% |
+| Atividade | Peso |
+|-----------|------|
+| Marco 1 - Apresentação + Código | 10% |
+| Marco 2 - Apresentação + Código | 10% |
+| Marco 3 - Apresentação + Código | 10% |
+| Marco 4 - Apresentação + Código | 10% |
+| Entrega API REST + Testes | 5% |
+| Entrega App Móvel | 10% |
+| Apresentação Final + Documentação | 20% |
+| Gestão de Projeto (Git, Sprints) | 10% |
+| Qualidade de Código e Testes | 5% |
+| Aplicação de Conceitos | 10% |
 
 ### Critérios de Aprovação
 
