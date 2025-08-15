@@ -4,7 +4,7 @@
 
 - Consulte o [plano](docs/plano.pdf).
 - Conceitos básicos de [hemograma](https://drive.google.com/file/d/11Mu27n1Av6A4__0fBmQ-vCtoo64JtKyJ/view?usp=sharing).
-- Um [hemograma](https://fhir.saude.go.gov.br/r4/exame/) pela SES-GO.
+- Um [hemograma](https://fhir.saude.go.gov.br/r4/exame/) pela SES-GO (FHIR 4.0.1).
 
 ## Ementa
 
@@ -15,31 +15,6 @@ Sistemas de informação que fazem uso de dispositivos (ubíquos) (16h): smartph
 Estar apto a colaborar com o desenvolvimento de soluções no domínio
 de sistemas ubíquos e pervasivos.
 
-## Objetivos específicos
-
-- Compreender e caracterizar o paradigma de computação ubíqua e pervasiva e seu uso como parte de aplicações e sistemas de informação.
-- Compreender e caracterizar os conceitos fundamentais envolvidos na construção de software para sistemas ubíquos: redes de sensores internet das coisas (IoT) e sistemas ciberfísicos; ambientes inteligentes (smart spaces); ciência de contexto; processamento de streams de dados; computação móvel; computação no contínuo da Internet (nuvem, névoa e borda); ambientes virtuais e metaverso.
-- Compreender o panorama geral de plataformas, middleware, frameworks e ferramentas utilizadas no desenvolvimento de software para sistemas ubíquos, desenvolvendo a capacidade de aplicação prática em cenários representativos.
-- Compreender os principais aspectos não-funcionais de software para sistemas ubíquos, notadamente: mobilidade, persistência, segurança, desempenho e privacidade.
-
-## Programa
-
-UNIDADE 1 – Introdução e Fundamentos (22h)
-1 – Introdução: definições básicas, exemplos, objetivos de projeto e classificação de sistemas de computação ubíqua e pervasiva (04h).
-2 - Princípios de arquitetura de software para sistemas de computação ubíqua. (02h)
-3 – Conceitos fundamentais: computação móvel; redes de sensores; IoT; smart spaces; ciência de contexto; processamento de streams; computação no contínuo nuvem-névoa-borda; gêmeos digitais; metaverso. (16h, inclui avaliação escrita)
-      
-UNIDADE 2 – Construção de software para sistemas ubíquos (42h)
-4 – Princípios do desenvolvimento de software para sistemas ubíquos: middleware, plataformas e frameworks. (02h)
-5 – Arquiteturas de comunicação e integração para sistemas ubíquos: cliente-servidor; publish-subscribe; messaging; streaming. (08h)
-6 – Construção de aplicações para sistemas ubíquos usando dispositivos móveis: adaptação da interface de usuário entre dispositivos heterogêneos; offloading de funções no contínuo da computação; mobile cloud/edge computing. (12h)
-7 – Construção de software para sistemas ubíquos: projeto e implementação de sistemas ciberfísicos; processamento de streams em tempo real; ciência de contexto; projeto e implementação de gêmeos digitais; construção de aplicações ubíquas; segurança e privacidade. (20h, inclui acompanhamento do trabalho e avaliação escrita)
-
-
-## Relação com outras disciplinas
-
-Sistemas ubíquos são essencialmente sistemas distribuídos, com forte aplicação dos conceitos estudados na disciplina de Software Concorrente e Distribuído. Por tratar da construção de software, são também necessários conhecimentos adquiridos nas disciplinas relacionadas, notadamente Projeto de Software, Construção de Software e Arquitetura de Software. Finalmente, as competências desenvolvidas nas disciplinas relacionadas com programação (Introdução a Programação, Algoritmos e Estruturas de Dados 1 e 2, e Programação Orientada a Objetos).
-
 ## Critérios de avaliação
 
 A avaliação da disciplina será baseada na metodologia de aula invertida, onde os estudantes conduzem o desenvolvimento do trabalho prático e o professor atua como mediador. A nota final será composta por:
@@ -47,9 +22,9 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 ### 1. Desenvolvimento Incremental do Sistema (60%)
 
 **1.1 Entrega dos Marcos Técnicos (40%)**
-- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via subscription, com parsing de instâncias de recursos Observation.
+- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via subscription, com parsing de instâncias de recursos Observation. Cada novo hemograma, dessa forma, será "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido.
 - **Marco 2 - Análise Individual (10%)**: Componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos.
-- **Marco 3 - Base Consolidada (10%)**: Sistema de armazenamento local operacional com persistência dos hemogramas recebidos.
+- **Marco 3 - Base Consolidada (10%)**: Sistema de armazenamento local operacional com persistência dos hemogramas recebidos e eventuais outros dados para análise proposta.
 - **Marco 4 - Análise Coletiva (10%)**: Implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
 
 **1.2 Integração e Funcionalidades Avançadas (20%)**
