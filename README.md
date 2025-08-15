@@ -22,15 +22,15 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 ### 1. Desenvolvimento Incremental do Sistema (60%)
 
 **1.1 Entrega dos Marcos Técnicos (40%)**
-- **Marco 1 - Recepção FHIR (10%)**: Implementação funcional do receptor de mensagens FHIR via [subscription](https://www.hl7.org/fhir/R4/subscription.html), com parsing de instâncias de recursos Observation. Você deve usar este mecanismo para que cada novo hemograma recebido pelo servidor FHIR seja "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido (hemograma). Se você usar um Servidor FHIR para testes como o HAPI FHIR, por exemplo, a consulta [https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count](https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count) mostrará quantas "assinaturas" estarão ativas. 
-- **Marco 2 - Análise Individual (10%)**: Componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos.
-- **Marco 3 - Base Consolidada (10%)**: Sistema de armazenamento local operacional com persistência dos hemogramas recebidos e eventuais outros dados para análise proposta.
-- **Marco 4 - Análise Coletiva (10%)**: Implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
+- **Marco 1 - Recepção FHIR (10%)**: implementação funcional do receptor de mensagens FHIR via [subscription](https://www.hl7.org/fhir/R4/subscription.html), com parsing de instâncias de recursos Observation. Você deve usar este mecanismo para que cada novo hemograma recebido pelo servidor FHIR seja "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido (hemograma). Se você usar um Servidor FHIR para testes como o HAPI FHIR, por exemplo, a consulta [https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count](https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count) mostrará quantas "assinaturas" estarão ativas. 
+- **Marco 2 - Análise Individual (10%)**: componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos.
+- **Marco 3 - Base Consolidada (10%)**: sistema de armazenamento local operacional com persistência dos hemogramas recebidos e eventuais outros dados para análise proposta.
+- **Marco 4 - Análise Coletiva (10%)**: implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
 
 **1.2 Integração e Funcionalidades Avançadas (20%)**
-- **API REST (5%)**: Endpoints funcionais para consulta de alertas com documentação adequada
+- **API REST (5%)**: endpoints funcionais para consulta de alertas com documentação adequada
 - **Aplicativo Móvel (10%)**: App Android funcional com recebimento de notificações e interface para consulta de alertas
-- **Testes e Qualidade (5%)**: Cobertura de testes automatizados e qualidade do código (seguindo boas práticas)
+- **Testes e Qualidade (5%)**: cobertura de testes automatizados e qualidade do código (seguindo boas práticas)
 
 ### 2. Processo de Desenvolvimento e Colaboração (25%)
 
@@ -40,8 +40,8 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 - Documentação técnica atualizada (README, arquitetura, APIs)
 
 **2.2 Apresentações e Demonstrações (15%)**
-- **Apresentações Intermediárias (10%)**: Demonstrações funcionais nos marcos 1, 2, 3 e 4 (2,5% cada)
-- **Apresentação Final (5%)**: Demonstração completa do sistema integrado com cenários de uso realistas
+- **Apresentações Intermediárias (10%)**: demonstrações funcionais nos marcos 1, 2, 3 e 4 (2,5% cada)
+- **Apresentação Final (5%)**: demonstração completa do sistema integrado com cenários de uso realistas
 
 ### 3. Competências Técnicas e Conceituais (15%)
 
