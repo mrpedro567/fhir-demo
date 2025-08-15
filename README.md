@@ -23,7 +23,16 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 
 **1.1 Entrega dos Marcos Técnicos (40%)**
 - **Marco 1 - Recepção FHIR (10%)**: implementação funcional do receptor de mensagens FHIR via [subscription](https://www.hl7.org/fhir/R4/subscription.html), com parsing de instâncias de recursos Observation. Você deve usar este mecanismo para que cada novo hemograma recebido pelo servidor FHIR seja "sinalizado" para o receptor que terá que realizar o parsing do JSON recebido (hemograma). Se você usar um Servidor FHIR para testes como o HAPI FHIR, por exemplo, a consulta [https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count](https://hapi.fhir.org/baseR4/Subscription?status=active&_summary=count) mostrará quantas "assinaturas" estarão ativas. Um servidor para testes facilita o aprendizado, mas bem provavelmente irão disponibilizar localmente uma instância do [Servidor HAPI FHIR](https://github.com/hapifhir/hapi-fhir-jpaserver-starter) ou outra.
-- **Marco 2 - Análise Individual (10%)**: componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos. Você deverá procurar por parâmetros de referência do Estado de Goiás, do Brasil ou do mundo. 
+- **Marco 2 - Análise Individual (10%)**: componente de análise individual de hemogramas com detecção de desvios nos parâmetros hematológicos. Para garantir a padronização, todas as equipes deverão utilizar a seguinte tabela de referência simplificada para gerar os alertas:
+
+| Parâmetro | Unidade | Valor Mínimo | Valor Máximo |
+| :--- | :--- | :--- | :--- |
+| Leucócitos | /µL | 4.000 | 11.000 |
+| Hemoglobina | g/dL | 12.0 | 17.5 |
+| Plaquetas | /µL | 150.000 | 450.000 |
+| Hematócrito | % | 36 | 52 |
+
+*Qualquer valor fora desta faixa deve ser considerado um desvio e registrado pelo sistema.*
 - **Marco 3 - Base Consolidada (10%)**: sistema de armazenamento local operacional com persistência dos hemogramas recebidos e eventuais outros dados para análise proposta.
 - **Marco 4 - Análise Coletiva (10%)**: implementação da detecção de padrões coletivos em janelas deslizantes com os indicadores especificados
 
@@ -47,7 +56,7 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 
 **3.1 Aplicação de Conceitos da Disciplina (10%)**
 - Uso adequado de padrões de sistemas ubíquos: publish-subscribe, streaming, processamento em tempo real
-- Implementação de aspectos não-funcionais: segurança (HTTPS, autenticação básica), performance, escalabilidade
+- Implementação de aspectos não-funcionais: segurança (HTTPS com mTLS), performance, escalabilidade
 - Aplicação correta do padrão HL7 FHIR e interoperabilidade
 
 **3.2 Inovação e Solução de Problemas (5%)**
@@ -56,18 +65,13 @@ A avaliação da disciplina será baseada na metodologia de aula invertida, onde
 
 ### Cronograma de Avaliações
 
-| Atividade | Peso |
-|-----------|------|
-| Marco 1 - Apresentação + Código | 10% |
-| Marco 2 - Apresentação + Código | 10% |
-| Marco 3 - Apresentação + Código | 10% |
-| Marco 4 - Apresentação + Código | 10% |
-| Entrega API REST + Testes | 5% |
-| Entrega App Móvel | 10% |
-| Apresentação Final + Documentação | 20% |
-| Gestão de Projeto (Git, Sprints) | 10% |
-| Qualidade de Código e Testes | 5% |
-| Aplicação de Conceitos | 10% |
+As entregas e apresentações seguirão o cronograma a ser definido. As principais atividades avaliativas são:
+
+- **Apresentação do Marco 1**: Demonstração do receptor FHIR.
+- **Apresentação do Marco 2**: Demonstração da análise individual.
+- **Apresentação do Marco 3**: Demonstração da base consolidada.
+- **Apresentação do Marco 4**: Demonstração da análise coletiva.
+- **Entrega Final**: Apresentação do sistema completo, incluindo API, App Móvel e documentação final.
 
 ### Critérios de Aprovação
 
