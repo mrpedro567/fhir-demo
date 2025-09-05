@@ -6,6 +6,7 @@
 | Pedro Silva | 201904250 | 
 | Halleffy    |           | 
 | Giovanna    |           | 
+| Joao Pedro  | 202204197 | 
 
 ## Comandos 
 
