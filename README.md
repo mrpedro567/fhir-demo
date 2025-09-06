@@ -28,6 +28,9 @@ docker-compose up -d db
 # Iniciar Zookeeper e Kafka
 docker-compose up -d zookeeper kafka
 
+# Iniciar Kafka Connector
+docker-compose up -d kafka-connector
+
 # Iniciar servidor FHIR HAPI
 docker-compose up -d fhir
 ```
@@ -36,9 +39,19 @@ docker-compose up -d fhir
 | Serviço | Porta Host | Porta Container | Descrição |
 |---------|------------|-----------------|-----------|
 | Zookeeper | 22181 | 2181 | Coordenação do Kafka |
-| Kafka | 29092 | 29092 | Broker de mensagens |
+| Kafka | 29092 | 29092 | Broker de mensagens (Host) |
+| Kafka | 9092 | 9092 | Broker de mensagens (Inter-container) |
+| Kafka Connector | 9099 | 9099 | Conector personalizado do Kafka |
 | FHIR HAPI | 8080 | 8080 | Servidor FHIR |
-| PostgreSQL | 5432 | 5432 | Banco de dados  |
+| PostgreSQL | 5432 | 5432 | Banco de dados |
+
+### Links e conectividade entre containers
+| Container | Links/Depends On | Descrição |
+|-----------|------------------|-----------|
+| kafka | zookeeper | Kafka depende do Zookeeper |
+| kafka-connector | kafka, zookeeper | Conector acessa Kafka e Zookeeper |
+| fhir | db, kafka-connector | FHIR conecta ao banco e ao conector Kafka |
+| db | - | Banco independente |
 
 ### Logs dos serviços
 ```bash
@@ -48,16 +61,51 @@ docker-compose logs -f
 # Ver logs de um serviço específico
 docker-compose logs -f fhir
 docker-compose logs -f kafka
+docker-compose logs -f kafka-connector
 docker-compose logs -f db
 ```
 
 O Docker compose está organizado da seguinte forma 
 
+### Scripts disponíveis
+
+#### Criar subscrição FHIR
+```bash
+# Executar script para criar subscrição para LOINC 58410-2
+./create_subscription.sh
+```
+
+Este script cria uma subscrição no servidor FHIR para observações com código LOINC 58410-2 (CBC panel - Blood by Automated count). 
+
 ## Arquitetura
 
 ### Servidor FHIR HAPI
+- **Porta**: 8080
+- **Função**: Servidor FHIR R4 para armazenamento e gerenciamento de recursos de saúde
+- **Conectividade**: Conectado ao banco PostgreSQL e ao Kafka Connector
 
-### Fila de mensagens 
+### Fila de mensagens (Kafka)
+- **Portas**: 
+  - 29092 (acesso externo/host)
+  - 9092 (comunicação inter-container)
+- **Função**: Sistema de mensageria distribuída para processamento de eventos
+- **Dependências**: Zookeeper para coordenação
+
+### Kafka Connector
+- **Porta**: 9099
+- **Função**: Conector personalizado para integração entre FHIR e Kafka
+- **Conectividade**: Conectado ao Kafka e Zookeeper
+- **Localização**: `./kafka-connector/` (aplicação Node.js)
+
+### Zookeeper
+- **Porta**: 22181
+- **Função**: Coordenação e configuração do cluster Kafka
+
+### Banco de Dados (PostgreSQL)
+- **Porta**: 5432
+- **Função**: Armazenamento persistente para o servidor FHIR
+- **Credenciais**: admin/admin
+- **Database**: hapi 
 
 ### Servidor de processsamento (Backend)
 
