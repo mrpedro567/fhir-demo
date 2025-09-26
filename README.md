@@ -4,7 +4,7 @@
 | Nome        | Matricula |
 | ---         |---        |
 | Pedro Silva | 201904250 | 
-| Halleffy    |           | 
+| Halleffy    | 201802766 | 
 | Giovanna    |           | 
 | Joao Pedro  | 202204197 | 
 
