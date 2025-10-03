@@ -1,12 +1,12 @@
 # Trabalho Final 
 ## Grupo
 
-| Nome        | Matricula |
-| ---         |---        |
-| Pedro Silva | 201904250 | 
-| Halleffy    | 201802766 | 
-| Giovanna    |           | 
-| Joao Pedro  | 202204197 | 
+| Nome          | Matricula |
+| ---           |---        |
+| Pedro Silva   | 201904250 | 
+| Halleffy      | 201802766 | 
+| Giovanna Lyssa| 202004754 | 
+| Joao Pedro    | 202204197 | 
 
 ## Comandos 
 
