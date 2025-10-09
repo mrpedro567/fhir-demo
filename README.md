@@ -1,5 +1,10 @@
 # Trabalho Final 
-## Grupo
+
+# Tópicos em engenharia de software
+
+Os documentos referentes a análises e tarefas realizadas com o apoio de ferramentas de Inteligência Artificial se encontram na pasta docs
+
+## Grupo Software para computação ubíqua
 
 | Nome          | Matricula |
 | ---           |---        |
@@ -8,7 +13,9 @@
 | Giovanna Lyssa| 202004754 | 
 | Joao Pedro    | 202204197 | 
 
-## Comandos 
+## Projeto
+
+Repositório para o projeto de análise de hemogramas utilizando o padrão FHIR.
 
 ### Iniciar todos os serviços
 ```bash
