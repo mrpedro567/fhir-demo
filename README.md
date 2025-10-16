@@ -2,7 +2,8 @@
 
 # Tópicos em engenharia de software
 
-Os documentos referentes a análises e tarefas realizadas com o apoio de ferramentas de Inteligência Artificial se encontram na pasta docs
+Os documentos referentes a análises e tarefas realizadas com o apoio de ferramentas de Inteligência Artificial se encontram no documento docs/Relatoro.md
+
 
 ## Grupo Software para computação ubíqua
 
