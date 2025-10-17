@@ -6,6 +6,10 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - 22181:2181
+    networks:
+      default:
+        aliases:
+          - zookeeper
   
   kafka:
     image: confluentinc/cp-kafka:7.4.4
@@ -17,11 +21,17 @@ services:
     user: "1000:1000"
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://kafka:29092
+      KAFKA_ZOOKEEPER_CONNECT: host.docker.internal:22181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.17.0.1:9092,PLAINTEXT_HOST://172.17.0.1:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      default:
+        aliases:
+          - kafka
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   kafka-connector: 
     build:
@@ -33,6 +43,10 @@ services:
       - 9099:9099
     links:
       - kafka
+    networks:
+      default:
+        aliases:
+          - kafka-connector
 
   fhir:
     container_name: fhir
@@ -47,6 +61,10 @@ services:
     links:
       - db
       - kafka:kafka-connector
+    networks:
+      default:
+        aliases:
+          - fhir
 
   db:
     image: postgres

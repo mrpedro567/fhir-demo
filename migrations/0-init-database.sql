@@ -2,6 +2,7 @@ CREATE TABLE paciente (
     cpf VARCHAR(11) NOT NULL,
     nome VARCHAR(255) NOT NULL,
     sexo VARCHAR(15) NOT NULL,
+    
     PRIMARY KEY (cpf)
 );
 
