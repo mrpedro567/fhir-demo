@@ -92,6 +92,20 @@ services:
         - SPRING_DATASOURCE_PASSWORD=admin
         - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
 
+  data-parser:
+    build: 
+        context: ./data-parser
+        dockerfile: Dockerfile
+    container_name: data-parser
+    ports:
+        - "8082:8080"
+        - "5005:5005" # Expose the debug port
+    environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/processor
+        - SPRING_DATASOURCE_USERNAME=admin
+        - SPRING_DATASOURCE_PASSWORD=admin
+        - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+
 configs:
   hapi:
     file: ./hapi/hapi.application.yaml
