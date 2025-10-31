@@ -103,3 +103,34 @@ Problemas:
 ### Tarefas menores de desenvolvimento 
 
 - Conversão dos nomes das colunas no script de criação do banco para o padrão snake_case
+
+### Desenho da arquitetura do sistema a nivel de componente 
+"Create a plant UML document containing the following elements: One database, one component called connector, one component called fhir-server, one component called kafka, one called cbc-processor, and one last component called data-parser. The fhir-server connects with the conector component. The connector component communicates with kafka. From the kafka, the data-parser gets the data and saves it into the database component. The cbc-processot gets data from the database and performs calculations, saving the result into the database"
+
+Gerou o arquivo /architecture.puml 
+```
+@startuml
+title System Architecture - FHIR / Kafka / Processing
+
+' Components
+component "FHIR Server" as fhir
+component "Connector" as connector
+component "Kafka" as kafka
+component "Data Parser" as parser
+component "CBC Processor" as cbc
+
+database "Database" as DB
+
+' Relationships
+fhir -> connector : "Subscription notifications / REST"
+connector -> kafka : "Publish messages (FHIR events)"
+kafka -> parser : "Consume messages"
+parser -> DB : "Save parsed data"
+DB --> cbc : "Provide raw data (read)"
+cbc -> DB : "Save calculated results (write)"
+
+' Styling (optional)
+skinparam componentStyle rectangle
+@enduml
+```
+

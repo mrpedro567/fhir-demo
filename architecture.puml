@@ -1,0 +1,25 @@
+@startuml
+title System Architecture - FHIR / Kafka / Processing
+
+' Components
+component "FHIR Server" as fhir
+component "Connector" as connector
+component "Kafka" as kafka
+component "Data Parser" as parser
+component "CBC Processor" as cbc
+component "DB Procedure" as procedure
+
+database "Database" as DB
+
+' Relationships
+fhir -> connector : "Subscription notifications / REST"
+connector -> kafka : "Publish messages (FHIR events)"
+kafka -> parser : "Consume messages"
+parser -> DB : "Save parsed data"
+DB --> cbc : "Provide raw data (read)"
+cbc -> DB : "Save calculated results (write)"
+procedure -> DB: "Calculates biomarker"
+
+' Styling (optional)
+skinparam componentStyle rectangle
+@enduml

@@ -9,11 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import ufg.es.analisehemograma.model.modelHemograma.ModelHemograma;
-import ufg.es.analisehemograma.model.modelPaciente.ModelPaciente;
-import ufg.es.analisehemograma.model.modelPaciente.ModelPacienteRepositorio;
-import ufg.es.analisehemograma.model.modelPontoDeAtencao.ModelPontoDeAtencao;
-import ufg.es.analisehemograma.model.modelPontoDeAtencao.ModelPontoDeAtencaoRepositorio;
+import ufg.es.analisehemograma.model.Hemograma.ModelHemograma;
+import ufg.es.analisehemograma.model.Paciente.ModelPaciente;
+import ufg.es.analisehemograma.repository.ModelPacienteRepositorio;
+import ufg.es.analisehemograma.model.PontoDeAtencao.ModelPontoDeAtencao;
+import ufg.es.analisehemograma.repository.ModelPontoDeAtencaoRepositorio;
 
 @Service
 public class ServicoAnaliseHemograma implements IServicoAnaliseHemograma {
