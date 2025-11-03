@@ -57,7 +57,7 @@ services:
       - source: hapi
         target: /app/config/application.yaml
     depends_on:
-      - db
+        - db
     links:
       - db
       - kafka:kafka-connector
@@ -67,7 +67,7 @@ services:
           - fhir
 
   db:
-    image: postgres
+    image: postgres:16
     restart: always
     environment:
       POSTGRES_PASSWORD: admin
@@ -76,7 +76,7 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   cbc-processor:
     build: 
@@ -85,12 +85,14 @@ services:
     container_name: cbc-processor
     ports:
         - "8081:8080"
-        - "5005:5005" # Expose the debug port
+        - "5006:5006" # Expose the debug port
     environment:
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/processor
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/hapi
         - SPRING_DATASOURCE_USERNAME=admin
         - SPRING_DATASOURCE_PASSWORD=admin
         - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+    depends_on:
+        - db
 
   data-parser:
     build: 
@@ -101,7 +103,7 @@ services:
         - "8082:8080"
         - "5005:5005" # Expose the debug port
     environment:
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/processor
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/hapi
         - SPRING_DATASOURCE_USERNAME=admin
         - SPRING_DATASOURCE_PASSWORD=admin
         - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
