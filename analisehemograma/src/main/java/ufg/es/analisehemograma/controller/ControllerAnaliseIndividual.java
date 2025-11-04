@@ -1,8 +1,11 @@
 package ufg.es.analisehemograma.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ufg.es.analisehemograma.model.PontoDeAtencao.DTOPontoDeAtencao;
 import ufg.es.analisehemograma.servico.IServicoAnaliseHemograma;
 import ufg.es.analisehemograma.servico.ServicoAnaliseHemograma;
 
@@ -18,5 +21,10 @@ public class ControllerAnaliseIndividual {
     @GetMapping("/AnaliseIndividual")
     public String CalculoAnaliseIndivual() {
         return servico.analiseIndividualHemograma();
+    }
+
+    @GetMapping("/AnaliseIndividualTodosUltimosPontosDeAtencao")
+    public List<DTOPontoDeAtencao> CalculoAnaliseIndivualTodosUltimosPontosDeAtencao() {
+        return servico.analiseIndividualHemogramaTodosUltimosPontosDeAtencao();
     }
 }

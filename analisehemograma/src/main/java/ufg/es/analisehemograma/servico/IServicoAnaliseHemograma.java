@@ -1,5 +1,10 @@
 package ufg.es.analisehemograma.servico;
 
+import java.util.List;
+
+import ufg.es.analisehemograma.model.PontoDeAtencao.DTOPontoDeAtencao;
+import ufg.es.analisehemograma.model.PontoDeAtencao.ModelPontoDeAtencao;
+
 public interface IServicoAnaliseHemograma {
 
     // analiseIndividualHemograma, método principal para realizar a análise
@@ -10,5 +15,12 @@ public interface IServicoAnaliseHemograma {
     // Complexidade Prática: O número de hemogramas é uma constante, inferior a 5,
     // então a complexidade prática é O(m).
     public String analiseIndividualHemograma();
+
+    // analiseIndividualHemogramaTodosUltimosPontosDeAtencao, método que retorna
+    // todos os pontos de atenção mais recentes para cada paciente.
+    // Retorna: List<ModelPontoDeAtencao> - lista de pontos de atenção mais
+    // recentes.
+    // Complexidade Teórica: O(m), onde m é o número de pacientes.
+    public List<DTOPontoDeAtencao> analiseIndividualHemogramaTodosUltimosPontosDeAtencao();
 
 }

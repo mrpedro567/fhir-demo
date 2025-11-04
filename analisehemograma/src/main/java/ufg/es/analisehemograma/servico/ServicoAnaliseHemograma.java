@@ -2,6 +2,7 @@ package ufg.es.analisehemograma.servico;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import jakarta.transaction.Transactional;
 import ufg.es.analisehemograma.model.Hemograma.ModelHemograma;
 import ufg.es.analisehemograma.model.Paciente.ModelPaciente;
 import ufg.es.analisehemograma.repository.ModelPacienteRepositorio;
+import ufg.es.analisehemograma.model.PontoDeAtencao.DTOPontoDeAtencao;
 import ufg.es.analisehemograma.model.PontoDeAtencao.ModelPontoDeAtencao;
 import ufg.es.analisehemograma.repository.ModelPontoDeAtencaoRepositorio;
 
@@ -29,6 +31,22 @@ public class ServicoAnaliseHemograma implements IServicoAnaliseHemograma {
             ModelPontoDeAtencaoRepositorio pontoDeAtencaoRepositorio) {
         this.pacienteRepositorio = pacienteRepositorio;
         this.pontoDeAtencaoRepositorio = pontoDeAtencaoRepositorio;
+    }
+
+    // analiseIndividualHemogramaTodosUltimosPontosDeAtencao, método que retorna
+    // todos os pontos de atenção mais recentes para cada paciente.
+    // Retorna: List<ModelPontoDeAtencao> - lista de pontos de atenção mais
+    // recentes.
+    public List<DTOPontoDeAtencao> analiseIndividualHemogramaTodosUltimosPontosDeAtencao() {
+        ArrayList<DTOPontoDeAtencao> listaDTOPontoDeAtencao = new ArrayList<DTOPontoDeAtencao>();
+        ArrayList<ModelPontoDeAtencao> listaPontoDeAtencao = pontoDeAtencaoRepositorio.findAllLastPontoDeAtencao();
+
+        for (var pontoDeAtencao : listaPontoDeAtencao) {
+            DTOPontoDeAtencao dtoPontoDeAtencao = new DTOPontoDeAtencao(pontoDeAtencao);
+            listaDTOPontoDeAtencao.add(dtoPontoDeAtencao);
+        }
+
+        return listaDTOPontoDeAtencao;
     }
 
     // analiseIndividualHemograma, método principal para realizar a análise
