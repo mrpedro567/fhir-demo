@@ -47,7 +47,6 @@ services:
       default:
         aliases:
           - kafka-connector
-
   fhir:
     container_name: fhir
     image: "hapiproject/hapi:latest"
@@ -57,7 +56,8 @@ services:
       - source: hapi
         target: /app/config/application.yaml
     depends_on:
-        - db
+      db:
+        condition: service_healthy
     links:
       - db
       - kafka:kafka-connector
@@ -77,6 +77,11 @@ services:
       - ./postgres_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d hapi"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   cbc-processor:
     build: 
@@ -92,7 +97,8 @@ services:
         - SPRING_DATASOURCE_PASSWORD=admin
         - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
     depends_on:
-        - db
+      db:
+        condition: service_healthy
 
   data-parser:
     build: 
