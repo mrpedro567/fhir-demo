@@ -260,6 +260,9 @@ public class ServicoAnaliseHemograma implements IServicoAnaliseHemograma {
             pontoAtencao.addHemogramas(hemograma);
         }
 
+        ModelHemograma ultimo = !paciente.getHemogramas().isEmpty() ? paciente.getHemogramas().get(0) : null;
+        atualizarPossivelFumantePorHemograma(paciente, ultimo);
+
         paciente.addPontosDeAtencao(pontoAtencao);
         pacienteRepositorio.save(paciente);
 
@@ -756,5 +759,67 @@ public class ServicoAnaliseHemograma implements IServicoAnaliseHemograma {
             pontoAtencao.setHipotese(pontoAtencao.getHipotese() + "\nAnemia microcítica");
         }
     }
+
+// Avalia o último hemograma analisado do paciente e atualiza paciente.possivelFumante.
+// Critério (heurística inicial, configurável):
+//  - Hemoglobina acima do limite superior (M:17.2 / F:15.1) -> +2 pontos
+//  - Hematócrito acima do limite superior (M:50.3 / F:44.3) -> +2 pontos
+//  - Contagem de eritrócitos acima do limite superior (M:6.1 / F:5.4) -> +1 ponto
+//  - Contagem de leucócitos > 11000 -> +1 ponto
+//  - % de neutrófilos > 75 -> +1 ponto
+// Se pontos >= 3 => possivelFumante = true, senão false.
+private void atualizarPossivelFumantePorHemograma(ModelPaciente paciente, ModelHemograma hemograma) {
+    if (paciente == null || hemograma == null) {
+        return;
+    }
+
+    int pontos = 0;
+    String sexo = paciente.getSexo() != null ? paciente.getSexo().trim().toUpperCase() : "M";
+
+    try {
+        java.math.BigDecimal hb = hemograma.getHemoglobina();
+        java.math.BigDecimal ht = hemograma.getHematocrito();
+        java.math.BigDecimal er = hemograma.getContagemEritrocitos();
+        Integer leucocitos = hemograma.getContagemLeucocitos();
+        java.math.BigDecimal pctNeutro = hemograma.getPorcentagemNeutrofilos();
+
+        // Limites por sexo
+        java.math.BigDecimal hbLimite = sexo.equals("F") ? new java.math.BigDecimal("15.1")
+                                                       : new java.math.BigDecimal("17.2");
+        java.math.BigDecimal htLimite = sexo.equals("F") ? new java.math.BigDecimal("44.3")
+                                                       : new java.math.BigDecimal("50.3");
+        java.math.BigDecimal erLimite = sexo.equals("F") ? new java.math.BigDecimal("5.4")
+                                                       : new java.math.BigDecimal("6.1");
+
+        if (hb != null && hb.compareTo(hbLimite) > 0) {
+            pontos += 2;
+        }
+
+        if (ht != null && ht.compareTo(htLimite) > 0) {
+            pontos += 2;
+        }
+
+        if (er != null && er.compareTo(erLimite) > 0) {
+            pontos += 1;
+        }
+
+        if (leucocitos != null && leucocitos > 11000) {
+            pontos += 1;
+        }
+
+        if (pctNeutro != null && pctNeutro.compareTo(new java.math.BigDecimal("75")) > 0) {
+            pontos += 1;
+        }
+    } catch (Exception e) {
+        // Não queremos quebrar o fluxo de análise por causa de um valor inválido.
+        pontos = 0;
+    }
+
+    boolean ehPossivelFumante = pontos >= 3;
+    paciente.setPossivelFumante(ehPossivelFumante);
+    // Salva imediatamente para garantir que o estado reflete o último hemograma.
+    pacienteRepositorio.save(paciente);
+}
+
 
 }
