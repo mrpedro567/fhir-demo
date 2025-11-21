@@ -1,6 +1,7 @@
 package com.fhir.demo.dataparser.dataparser.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 import com.fhir.demo.dataparser.dataparser.model.dto.HemogramaDTO;
@@ -273,6 +274,26 @@ public class ModelHemograma {
         this.amplitudeDistribuicaoEritrocitaria = dto.getAmplitudeDistribuicaoEritrocitaria();
         this.vpm = dto.getVpm();
         this.contagemPlaquetas = dto.getContagemPlaquetas();
-        this.porcentagemNeutrofilos = dto.getMetamielocito().add(dto.getBastonete()).add(dto.getSegmentado()).divide(this.contagemLeucocitos);
+        if(this.contagemLeucocitos != null && this.contagemLeucocitos.compareTo(BigDecimal.ZERO) != 0)
+            this.porcentagemNeutrofilos = dto.getMetamielocito().add(dto.getBastonete()).add(dto.getSegmentado()).divide(this.contagemLeucocitos, 4, RoundingMode.HALF_UP);
+    }
+
+    public void fromDto(HemogramaDTO dto){
+        this.contagemLeucocitos = dto.getContagemLeucocitos();
+        this.porcentagemLinfocitos = dto.getPorcentagemLinfocitos();
+        this.porcentagemMonocitos = dto.getPorcentagemMonocitos();
+        this.porcentagemEosinofilos = dto.getPorcentagemEosinofilos();
+        this.porcentagemBasofilos = dto.getPorcentagemBasofilos();
+        this.contagemEritrocitos = dto.getContagemEritrocitos();
+        this.hemoglobina = dto.getHemoglobina();
+        this.hematocrito = dto.getHematocrito();
+        this.vcm = dto.getVcm();
+        this.hcm = dto.getHcm();
+        this.chcm = dto.getChcm();
+        this.amplitudeDistribuicaoEritrocitaria = dto.getAmplitudeDistribuicaoEritrocitaria();
+        this.vpm = dto.getVpm();
+        this.contagemPlaquetas = dto.getContagemPlaquetas();
+        if(this.contagemLeucocitos != null && this.contagemLeucocitos.compareTo(BigDecimal.ZERO) != 0)
+            this.porcentagemNeutrofilos = dto.getMetamielocito().add(dto.getBastonete()).add(dto.getSegmentado()).divide(this.contagemLeucocitos, 4, RoundingMode.HALF_UP);
     }
 }

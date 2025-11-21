@@ -4,8 +4,10 @@ package com.fhir.demo.dataparser.dataparser.services;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.hl7.fhir.r4.model.Base;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Bundle.BundleEntryComponent;
+import org.springframework.stereotype.Service;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Resource;
@@ -20,6 +22,7 @@ import com.fhir.demo.dataparser.dataparser.repository.ModelPacienteRepositorio;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 
+@Service
 public class HandleCBCImpl implements HandleCBC {
     private FhirContext ctx;
     private IParser parser;
@@ -74,7 +77,10 @@ public class HandleCBCImpl implements HandleCBC {
                 }
 
                 String loincCode = observation.getCode().getCodingFirstRep().getCode();
-                BigDecimal value = new BigDecimal(observation.getValue().toString());
+                if(loincCode == null || observation.getValueQuantity() == null || observation.getValueQuantity().getValue() == null){
+                    continue;
+                }
+                BigDecimal value = observation.getValueQuantity().getValue();
                 switch (loincCode) {
                     case "6690-2":
                         hemograma.setContagemLeucocitos(value);
@@ -133,5 +139,9 @@ public class HandleCBCImpl implements HandleCBC {
                 }
             }
         }
+
+        modelHemograma.fromDto(hemograma);
+        this.hemogramaRepository.save(modelHemograma);
     }
+
 }

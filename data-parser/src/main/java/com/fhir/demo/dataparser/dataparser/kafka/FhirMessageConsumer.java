@@ -71,7 +71,6 @@ public class FhirMessageConsumer extends AbstractSimpleKafka {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(TIME_OUT_MS));
             recNum = records.count();
             if (recNum == 0) {
-                log.info(MessageHelper.getSimpleJSONObject("No records retrieved").toJSONString());
                 break;
             }
 
@@ -116,7 +115,6 @@ public class FhirMessageConsumer extends AbstractSimpleKafka {
                 ConsumerRecords<String, String> records =
                         getKafkaConsumer().poll(Duration.ofMillis(TIME_OUT_MS));
                 if (records.count() == 0) {
-                    log.info(MessageHelper.getSimpleJSONObject("No records retrieved").toJSONString());
                 }
 
                 for (ConsumerRecord<String, String> record : records) {
