@@ -1,0 +1,126 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:patient-12345",
+      "resource": {
+        "resourceType": "Patient",
+        "identifier": [
+          {
+            "use": "official",
+            "system": "urn:ietf:rfc:1149",
+            "value": "123.456.789-00"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "text": "João da Silva (Exemplo)"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1985-04-15",
+        "address": [
+          {
+            "city": "Goiânia",
+            "country": "BR"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:hemogram-67890",
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Painel de Hemograma Completo"
+        },
+        "subject": {
+          "reference": "urn:uuid:patient-12345"
+        },
+        "component": [
+          {
+            "code": { "text": "Contagem de Leucócitos (WBC)" },
+            "valueQuantity": { "value": 7.5, "unit": "células/mcL" }
+          },
+          {
+            "code": { "text": "Neutrófilos" },
+            "valueQuantity": { "value": 60, "unit": "%" }
+          },
+          {
+            "code": { "text": "Linfócitos" },
+            "valueQuantity": { "value": 30, "unit": "%" }
+          },
+          {
+            "code": { "text": "Monócitos" },
+            "valueQuantity": { "value": 6, "unit": "%" }
+          },
+          {
+            "code": { "text": "Eosinófilos" },
+            "valueQuantity": { "value": 3, "unit": "%" }
+          },
+          {
+            "code": { "text": "Basófilos" },
+            "valueQuantity": { "value": 1, "unit": "%" }
+          },
+          {
+            "code": { "text": "Contagem de Eritrócitos (RBC)" },
+            "valueQuantity": { "value": 5.1, "unit": "milhões/mcL" }
+          },
+          {
+            "code": { "text": "Hemoglobina (Hgb)" },
+            "valueQuantity": { "value": 15.0, "unit": "gramas/dL" }
+          },
+          {
+            "code": { "text": "Hematócrito (Hct)" },
+            "valueQuantity": { "value": 45.0, "unit": "%" }
+          },
+          {
+            "code": { "text": "Volume Corpuscular Médio (VCM)" },
+            "valueQuantity": { "value": 90, "unit": "femtolitros" }
+          },
+          {
+            "code": { "text": "Hgb Corpuscular Média (HCM)" },
+            "valueQuantity": { "value": 29, "unit": "picogramas" }
+          },
+          {
+            "code": { "text": "Conc. Hgb Corp. Média (CHCM)" },
+            "valueQuantity": { "value": 34, "unit": "gramas/dL" }
+          },
+          {
+            "code": { "text": "Amplitude de Dist. (RDW)" },
+            "valueQuantity": { "value": 13.0, "unit": "%" }
+          },
+          {
+            "code": { "text": "Contagem de Plaquetas (PLT)" },
+            "valueQuantity": { "value": 250000, "unit": "células/mcL" }
+          },
+          {
+            "code": { "text": "Volume Plaquetário Médio (VPM)" },
+            "valueQuantity": { "value": 9.0, "unit": "femtolitros" }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    }
+  ]
+}

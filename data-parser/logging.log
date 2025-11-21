@@ -5018,3 +5018,292 @@ org.apache.kafka.common.errors.UnsupportedVersionException: The node does not su
 2025-10-17 20:59:08 INFO  FhirMessageConsumer:118 - {"message":"No records retrieved"}
 2025-10-17 20:59:13 INFO  FhirMessageConsumer:118 - {"message":"No records retrieved"}
 2025-10-17 20:59:16 INFO  FhirMessageConsumer:138 - {"message":"Shutting down consumer"}
+2025-11-21 15:00:07 ERROR LoggingFailureAnalysisReporter:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    org.springframework.boot.logging.log4j2.Log4J2LoggingSystem.initialize(Log4J2LoggingSystem.java:251)
+
+The following method did not exist:
+
+    'void org.apache.logging.log4j.util.PropertiesUtil.addPropertySource(org.apache.logging.log4j.util.PropertySource)'
+
+The calling method's class, org.springframework.boot.logging.log4j2.Log4J2LoggingSystem, was loaded from the following location:
+
+    jar:file:/home/pedro/.m2/repository/org/springframework/boot/spring-boot/4.0.0-SNAPSHOT/spring-boot-4.0.0-SNAPSHOT.jar!/org/springframework/boot/logging/log4j2/Log4J2LoggingSystem.class
+
+The called method's class, org.apache.logging.log4j.util.PropertiesUtil, is available from the following locations:
+
+    jar:file:/home/pedro/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar!/org/apache/logging/log4j/util/PropertiesUtil.class
+
+The called method's class hierarchy was loaded from the following locations:
+
+    org.apache.logging.log4j.util.PropertiesUtil: file:/home/pedro/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains compatible versions of the classes org.springframework.boot.logging.log4j2.Log4J2LoggingSystem and org.apache.logging.log4j.util.PropertiesUtil
+
+2025-11-21 15:00:26 ERROR LoggingFailureAnalysisReporter:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    org.springframework.boot.logging.log4j2.Log4J2LoggingSystem.initialize(Log4J2LoggingSystem.java:251)
+
+The following method did not exist:
+
+    'void org.apache.logging.log4j.util.PropertiesUtil.addPropertySource(org.apache.logging.log4j.util.PropertySource)'
+
+The calling method's class, org.springframework.boot.logging.log4j2.Log4J2LoggingSystem, was loaded from the following location:
+
+    jar:file:/home/pedro/.m2/repository/org/springframework/boot/spring-boot/4.0.0-SNAPSHOT/spring-boot-4.0.0-SNAPSHOT.jar!/org/springframework/boot/logging/log4j2/Log4J2LoggingSystem.class
+
+The called method's class, org.apache.logging.log4j.util.PropertiesUtil, is available from the following locations:
+
+    jar:file:/home/pedro/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar!/org/apache/logging/log4j/util/PropertiesUtil.class
+
+The called method's class hierarchy was loaded from the following locations:
+
+    org.apache.logging.log4j.util.PropertiesUtil: file:/home/pedro/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains compatible versions of the classes org.springframework.boot.logging.log4j2.Log4J2LoggingSystem and org.apache.logging.log4j.util.PropertiesUtil
+
+2025-11-21 15:18:23 INFO  AbstractSimpleKafka:34 - {"message":"Created the Shutdown Hook"}
+2025-11-21 15:18:23 INFO  AbstractConfig:380 - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 500
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-app-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = app-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 10
+	metadata.max.age.ms = 300000
+	metadata.recovery.rebootstrap.trigger.ms = 300000
+	metadata.recovery.strategy = rebootstrap
+	metric.reporters = [org.apache.kafka.common.metrics.JmxReporter]
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.assertion.algorithm = RS256
+	sasl.oauthbearer.assertion.claim.aud = null
+	sasl.oauthbearer.assertion.claim.exp.seconds = 300
+	sasl.oauthbearer.assertion.claim.iss = null
+	sasl.oauthbearer.assertion.claim.jti.include = false
+	sasl.oauthbearer.assertion.claim.nbf.seconds = 60
+	sasl.oauthbearer.assertion.claim.sub = null
+	sasl.oauthbearer.assertion.file = null
+	sasl.oauthbearer.assertion.private.key.file = null
+	sasl.oauthbearer.assertion.private.key.passphrase = null
+	sasl.oauthbearer.assertion.template.file = null
+	sasl.oauthbearer.client.credentials.client.id = null
+	sasl.oauthbearer.client.credentials.client.secret = null
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.jwt.retriever.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtRetriever
+	sasl.oauthbearer.jwt.validator.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtValidator
+	sasl.oauthbearer.scope = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	share.acknowledgement.mode = implicit
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2025-11-21 15:18:23 INFO  KafkaMetricsCollector:270 - initializing Kafka metrics collector
+2025-11-21 15:18:23 INFO  AbstractConfig:389 - These configurations '[default.topic, spring.application.name, key.serializer, spring.datasource.password, spring.datasource.driver-class-name, spring.datasource.username, value.serializer, spring.datasource.url, server.port]' were supplied but are not used yet.
+2025-11-21 15:18:23 INFO  AppInfoParser:125 - Kafka version: 4.1.1
+2025-11-21 15:18:23 INFO  AppInfoParser:126 - Kafka commitId: be816b82d25370ce
+2025-11-21 15:18:23 INFO  AppInfoParser:127 - Kafka startTimeMs: 1763749103861
+2025-11-21 15:18:23 INFO  ClassicKafkaConsumer:504 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Subscribed to topic(s): fhir
+2025-11-21 15:18:24 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:24 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:24 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:24 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:24 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:24 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:24 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:24 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:24 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:24 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:24 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:24 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:24 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:24 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:24 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:24 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:24 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:25 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:25 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:25 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:26 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:26 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:26 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:26 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:28 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:28 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:28 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:28 INFO  FhirMessageConsumer:119 - {"message":"No records retrieved"}
+2025-11-21 15:18:28 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:28 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:28 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:29 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:29 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:29 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:29 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:29 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:29 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:30 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:30 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:30 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:31 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:31 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:31 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:31 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:32 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:32 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:32 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:32 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:32 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:33 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:33 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:33 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:33 INFO  FhirMessageConsumer:119 - {"message":"No records retrieved"}
+2025-11-21 15:18:34 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:34 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:34 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:34 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:34 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:34 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:34 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:35 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:35 INFO  Metadata:314 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Rebootstrapping with [localhost/127.0.0.1:9092]
+2025-11-21 15:18:36 INFO  NetworkClient:1072 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Node -1 disconnected.
+2025-11-21 15:18:36 WARN  NetworkClient:899 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2025-11-21 15:18:36 WARN  NetworkClient:1255 - [Consumer clientId=consumer-app-group-1, groupId=app-group] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2025-11-21 15:18:36 INFO  FhirMessageConsumer:139 - {"message":"Shutting down consumer"}
+2025-11-21 15:31:02 ERROR LoggingFailureAnalysisReporter:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An attempt was made to call a method that does not exist. The attempt was made from the following location:
+
+    org.springframework.boot.logging.log4j2.Log4J2LoggingSystem.initialize(Log4J2LoggingSystem.java:251)
+
+The following method did not exist:
+
+    'void org.apache.logging.log4j.util.PropertiesUtil.addPropertySource(org.apache.logging.log4j.util.PropertySource)'
+
+The calling method's class, org.springframework.boot.logging.log4j2.Log4J2LoggingSystem, was loaded from the following location:
+
+    jar:file:/home/pedro/.m2/repository/org/springframework/boot/spring-boot/4.0.0-SNAPSHOT/spring-boot-4.0.0-SNAPSHOT.jar!/org/springframework/boot/logging/log4j2/Log4J2LoggingSystem.class
+
+The called method's class, org.apache.logging.log4j.util.PropertiesUtil, is available from the following locations:
+
+    jar:file:/home/pedro/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar!/org/apache/logging/log4j/util/PropertiesUtil.class
+
+The called method's class hierarchy was loaded from the following locations:
+
+    org.apache.logging.log4j.util.PropertiesUtil: file:/home/pedro/.m2/repository/org/apache/logging/log4j/log4j-api/2.17.1/log4j-api-2.17.1.jar
+
+
+Action:
+
+Correct the classpath of your application so that it contains compatible versions of the classes org.springframework.boot.logging.log4j2.Log4J2LoggingSystem and org.apache.logging.log4j.util.PropertiesUtil
+

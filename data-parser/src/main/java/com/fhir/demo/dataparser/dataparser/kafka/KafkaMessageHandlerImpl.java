@@ -1,13 +1,14 @@
 package com.fhir.demo.dataparser.dataparser.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fhir.demo.dataparser.dataparser.shared.MessageHelper;
 
 public class KafkaMessageHandlerImpl implements KafkaMessageHandler {
-    static Logger log = Logger.getLogger(KafkaMessageHandlerImpl.class.getName());
+    static Logger log = LoggerFactory.getLogger(KafkaMessageHandlerImpl.class);
 
     @Override
     public void processMessage(String topicName, ConsumerRecord<String, String> message) throws Exception {

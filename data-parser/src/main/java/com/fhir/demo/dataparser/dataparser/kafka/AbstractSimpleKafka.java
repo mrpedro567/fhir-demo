@@ -1,6 +1,8 @@
 package com.fhir.demo.dataparser.dataparser.kafka;
 
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fhir.demo.dataparser.dataparser.shared.MessageHelper;
 
@@ -29,10 +31,9 @@ public abstract class AbstractSimpleKafka {
             }
         });
 
-        log.info(MessageHelper.getSimpleJSONObject("Created the Shutdown Hook"));
+        log.info(MessageHelper.getSimpleJSONObject("Created the Shutdown Hook").toJSONString());
     }
-    private final Logger log = Logger.getLogger(AbstractSimpleKafka.class.getName());
-
+    private final Logger log = LoggerFactory.getLogger(AbstractSimpleKafka.class);
     /**
      * The inherited classes will provide the behavior necessary
      * to shut down gracefully.

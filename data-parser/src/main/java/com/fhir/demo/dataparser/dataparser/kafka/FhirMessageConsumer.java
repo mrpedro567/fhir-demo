@@ -5,7 +5,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.errors.WakeupException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.time.Duration;
@@ -22,7 +23,7 @@ public class FhirMessageConsumer extends AbstractSimpleKafka {
     /**
      * The class's Log4J logger
      */
-    static Logger log = Logger.getLogger(FhirMessageConsumer.class.getName());
+    static Logger log = LoggerFactory.getLogger(FhirMessageConsumer.class.getName());
 
     /**
      * Instantiates a new instance based on Abstract class SimpleKafka.
@@ -70,7 +71,7 @@ public class FhirMessageConsumer extends AbstractSimpleKafka {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(TIME_OUT_MS));
             recNum = records.count();
             if (recNum == 0) {
-                log.info(MessageHelper.getSimpleJSONObject("No records retrieved"));
+                log.info(MessageHelper.getSimpleJSONObject("No records retrieved").toJSONString());
                 break;
             }
 
@@ -85,10 +86,10 @@ public class FhirMessageConsumer extends AbstractSimpleKafka {
 
     private void close() throws Exception {
         if (this.getKafkaConsumer() == null){
-            log.info(MessageHelper.getSimpleJSONObject("The internal consumer is NULL"));
+            log.info(MessageHelper.getSimpleJSONObject("The internal consumer is NULL").toJSONString());
             return;
         }
-        log.info(MessageHelper.getSimpleJSONObject("Closing consumer"));
+        log.info(MessageHelper.getSimpleJSONObject("Closing consumer").toJSONString());
         if( this.getKafkaConsumer() != null) this.getKafkaConsumer().close();
     }
 
@@ -115,7 +116,7 @@ public class FhirMessageConsumer extends AbstractSimpleKafka {
                 ConsumerRecords<String, String> records =
                         getKafkaConsumer().poll(Duration.ofMillis(TIME_OUT_MS));
                 if (records.count() == 0) {
-                    log.info(MessageHelper.getSimpleJSONObject("No records retrieved"));
+                    log.info(MessageHelper.getSimpleJSONObject("No records retrieved").toJSONString());
                 }
 
                 for (ConsumerRecord<String, String> record : records) {
@@ -135,7 +136,7 @@ public class FhirMessageConsumer extends AbstractSimpleKafka {
      */
     public void shutdown() throws Exception {
         closed.set(true);
-        log.info(MessageHelper.getSimpleJSONObject("Shutting down consumer"));
+        log.info(MessageHelper.getSimpleJSONObject("Shutting down consumer").toJSONString());
         getKafkaConsumer().wakeup();
     }
 
