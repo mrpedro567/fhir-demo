@@ -1,5 +1,6 @@
 package ufg.es.analisehemograma.servico;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -10,20 +11,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ufg.es.analisehemograma.model.AnaliseColetiva.AlertaMunicipioDTO;
+import ufg.es.analisehemograma.model.AnaliseColetiva.ModelAlertaMunicipio;
 import ufg.es.analisehemograma.model.AnaliseColetiva.ResultadoColetivoDTO;
+import ufg.es.analisehemograma.model.Municipio.ModelMunicipio;
+import ufg.es.analisehemograma.repository.ModelAlertaMunicipioRepositorio;
+import ufg.es.analisehemograma.repository.ModelMunicipioRepositorio;
 import ufg.es.analisehemograma.repository.ModelPacienteRepositorio;
 
 @Service
 public class ServicoAnaliseColetiva implements IServicoAnaliseColetiva {
 
     private final ModelPacienteRepositorio pacienteRepositorio;
+    private final ModelAlertaMunicipioRepositorio alertaRepositorio;
+    private final ModelMunicipioRepositorio municipioRepositorio;
 
-    public ServicoAnaliseColetiva(ModelPacienteRepositorio pacienteRepositorio) {
+    public ServicoAnaliseColetiva(ModelPacienteRepositorio pacienteRepositorio,
+                                  ModelAlertaMunicipioRepositorio alertaRepositorio,
+                                  ModelMunicipioRepositorio municipioRepositorio) {
         this.pacienteRepositorio = pacienteRepositorio;
+        this.alertaRepositorio = alertaRepositorio;
+        this.municipioRepositorio = municipioRepositorio;
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public List<AlertaMunicipioDTO> gerarAlertas(double limiarPercentual) {
         LocalDate hoje = LocalDate.now();
         LocalDate ldMaior = hoje.minusYears(15);
@@ -47,6 +58,17 @@ public class ServicoAnaliseColetiva implements IServicoAnaliseColetiva {
             double percentual = ((double) contagem / (double) populacao) * 100.0;
             if (percentual > limiarPercentual) {
                 alertas.add(new AlertaMunicipioDTO(r.getNomeMunicipio(), percentual));
+
+                ModelMunicipio m = municipioRepositorio.findByNome(r.getNomeMunicipio());
+                if (m != null) {
+                    ModelAlertaMunicipio a = new ModelAlertaMunicipio();
+                    a.setMunicipio(m);
+                    a.setPercentual(percentual);
+                    a.setContagemFumantes10a15(contagem);
+                    a.setPopulacao10a15(populacao);
+                    a.setDataCriacao(Instant.now());
+                    alertaRepositorio.save(a);
+                }
             }
         }
         return alertas;
